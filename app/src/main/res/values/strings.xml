@@ -116,5 +116,7 @@
     <string name="tvLocation">Location</string>
     <string name="tvCompany">Company</string>
     <string name="user_avatar">User Avatar</string>
+    <string name="search">Find User</string>
+    <string name="search_hint">Username</string>
 </resources>
 
