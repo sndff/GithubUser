@@ -19,96 +19,25 @@
 
         <ImageView
             android:id="@+id/img_user"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/user_avatar"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars"
-            android:contentDescription="@string/user_avatar" />
-
-        <TextView
-            android:id="@+id/usr_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
-            android:textSize="14sp"
-            card_view:layout_constraintStart_toEndOf="@+id/img_user"
-            card_view:layout_constraintTop_toBottomOf="@+id/usr_username" />
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/usr_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textStyle="bold"
             android:textSize="14sp"
+            android:textStyle="bold"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_user"
             card_view:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/usr_follower"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="8dp"
-            android:textSize="12sp"
-            card_view:layout_constraintStart_toEndOf="@+id/tv_followers"
-            card_view:layout_constraintTop_toBottomOf="@+id/usr_name" />
-
-        <TextView
-            android:id="@+id/usr_repo"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="8dp"
-            android:textSize="12sp"
-            card_view:layout_constraintStart_toEndOf="@+id/tv_repositories"
-            card_view:layout_constraintTop_toBottomOf="@+id/usr_follower" />
-
-        <TextView
-            android:id="@+id/tv_followers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/txt_followers"
-            android:textSize="12sp"
-            card_view:layout_constraintStart_toEndOf="@+id/img_user"
-            card_view:layout_constraintTop_toBottomOf="@+id/usr_name" />
-
-        <TextView
-            android:id="@+id/tv_repositories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/txt_repositories"
-            android:textSize="12sp"
-            card_view:layout_constraintStart_toEndOf="@+id/img_user"
-            card_view:layout_constraintTop_toBottomOf="@+id/usr_follower" />
-
-        <TextView
-            android:id="@+id/tv_following"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/txt_following"
-            android:textSize="12sp"
-            card_view:layout_constraintStart_toEndOf="@+id/usr_follower"
-            card_view:layout_constraintTop_toBottomOf="@+id/usr_name" />
-
-        <TextView
-            android:id="@+id/usr_following"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="8dp"
-            android:textSize="12sp"
-            card_view:layout_constraintStart_toEndOf="@+id/tv_following"
-            card_view:layout_constraintTop_toBottomOf="@+id/usr_name" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
