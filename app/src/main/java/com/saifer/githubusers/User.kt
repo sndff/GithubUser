@@ -11,6 +11,6 @@ data class User(
     var followers: String?,
     var following: String?,
     var repo: String?,
-    var location: String?,
-    var company: String?
+    var location: String? = "-",
+    var company: String? = "-"
 ) : Parcelable

@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                                     )
                                     searchList.add(user)
                                 }
-                                showDetailUser(searchList)
+                                showUser(searchList)
                             }
                         } else {
                             Log.e("MainActivity", "onFailure: ${response.message()}")
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                         Log.e("MainActivity", "onFailure: ${t.message}")
                     }
                 })
-                showDetailUser(searchList)
+                showUser(searchList)
                 return true
             }
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun showDetailUser(data: ArrayList<User>) {
+    private fun showUser(data: ArrayList<User>) {
         if(applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
             rvUser.layoutManager = GridLayoutManager(this, 2)
         } else {
