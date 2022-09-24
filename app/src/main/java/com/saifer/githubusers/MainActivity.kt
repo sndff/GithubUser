@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.saifer.githubusers.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,13 +21,17 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private lateinit var rvUser: RecyclerView
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        rvUser = findViewById(R.id.rv_user)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+        rvUser = binding.rvUser
         rvUser.setHasFixedSize(true)
 
     }
@@ -41,44 +47,7 @@ class MainActivity : AppCompatActivity() {
         searchView.queryHint = resources.getString(R.string.search_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                // show similar list users
-                val searchList = ArrayList<User>()
-                // from json
-                val client = ApiConfig.getApiService().getUser(query)
-                client.enqueue(object : Callback<FindUserResponse> {
-                    override fun onResponse(
-                        call: Call<FindUserResponse>,
-                        response: Response<FindUserResponse>
-                    ) {
-//                        showLoading(false)
-                        if (response.isSuccessful) {
-                            val responseBody = response.body()
-                            if (responseBody != null) {
-                                for (i in 0 until responseBody.items!!.size){
-                                    val user = User(
-                                        responseBody.items[i]!!.avatarUrl,
-                                        responseBody.items[i]!!.login,
-                                        null,
-                                        null,
-                                        null,
-                                        null,
-                                        null,
-                                        null
-                                    )
-                                    searchList.add(user)
-                                }
-                                showUser(searchList)
-                            }
-                        } else {
-                            Log.e("MainActivity", "onFailure: ${response.message()}")
-                        }
-                    }
-                    override fun onFailure(call: Call<FindUserResponse>, t: Throwable) {
-//                        showLoading(false)
-                        Log.e("MainActivity", "onFailure: ${t.message}")
-                    }
-                })
-                showUser(searchList)
+                findUser(query)
                 return true
             }
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -111,11 +80,53 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentDetailUserActivity)
     }
 
-//    private fun showLoading(isLoading: Boolean) {
-//        if (isLoading) {
-//            binding.progressBar.visibility = View.VISIBLE
-//        } else {
-//            binding.progressBar.visibility = View.GONE
-//        }
-//    }
+    private fun findUser(key: String){
+        val searchList = ArrayList<User>()
+        val client = ApiConfig.getApiService().getUser(key)
+        showLoading(true)
+        client.enqueue(object : Callback<FindUserResponse> {
+            override fun onResponse(
+                call: Call<FindUserResponse>,
+                response: Response<FindUserResponse>
+            ) {
+                showLoading(false)
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        for (i in 0 until responseBody.items!!.size){
+                            val user = User(
+                                responseBody.items[i]!!.avatarUrl,
+                                responseBody.items[i]!!.login,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null
+                            )
+                            searchList.add(user)
+                        }
+                        showUser(searchList)
+                    }
+                } else {
+                    Log.e("MainActivity", "onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<FindUserResponse>, t: Throwable) {
+                showLoading(false)
+                Log.e("MainActivity", "onFailure: ${t.message}")
+            }
+        })
+        showUser(searchList)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            val progBar = binding.progressBar
+            progBar.visibility = View.VISIBLE
+        } else {
+            val progBar = binding.progressBar
+            progBar.visibility = View.GONE
+        }
+    }
 }

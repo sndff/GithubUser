@@ -3,8 +3,12 @@ package com.saifer.githubusers
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
+import androidx.annotation.StringRes
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.saifer.githubusers.databinding.ActivityDetailUserBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,11 +34,10 @@ class DetailUserActivity : AppCompatActivity() {
                 call: Call<DetailUserResponse>,
                 response: Response<DetailUserResponse>
             ) {
-//                        showLoading(false)
+                showLoading(false)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-//                        Toast.makeText(this@DetailUserActivity, responseBody.company, Toast.LENGTH_SHORT).show()
                         Glide.with(binding.imgDtlAvatar)
                             .load(responseBody.avatarUrl)
                             .circleCrop()
@@ -52,16 +55,38 @@ class DetailUserActivity : AppCompatActivity() {
                 }
             }
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-//                        showLoading(false)
+                showLoading(false)
                 Log.e("MainActivity", "onFailure: ${t.message}")
             }
         })
-
+        // Tab Layout
+        val pageAdapter = DetailUserPagerAdapter(this, user.username)
+        val viewPager: ViewPager2 = binding.viewPager
+        viewPager.adapter = pageAdapter
+        val tabs: TabLayout = binding.tabs
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+        supportActionBar?.elevation = 0f
 
     }
-
     companion object{
         var EXTRA_USER = ""
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            val progBar = binding.progressBar
+            progBar.visibility = View.VISIBLE
+        } else {
+            val progBar = binding.progressBar
+            progBar.visibility = View.GONE
+        }
     }
 }
 

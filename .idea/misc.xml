@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../../../layout/custom_preview.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_detail_user_follower.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_detail_user_following.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.67" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.1" />
       </map>
