@@ -59,6 +59,7 @@ class DetailUserActivity : AppCompatActivity() {
                 Log.e("MainActivity", "onFailure: ${t.message}")
             }
         })
+
         // Tab Layout
         val pageAdapter = DetailUserPagerAdapter(this, user.username)
         val viewPager: ViewPager2 = binding.viewPager
@@ -68,7 +69,6 @@ class DetailUserActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
-
     }
     companion object{
         var EXTRA_USER = ""

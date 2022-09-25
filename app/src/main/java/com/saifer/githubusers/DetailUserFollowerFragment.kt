@@ -1,15 +1,11 @@
 package com.saifer.githubusers
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saifer.githubusers.databinding.FragmentDetailUserFollowerBinding
@@ -22,29 +18,56 @@ class DetailUserFollowerFragment(private val uname: String?) : Fragment() {
 
     private lateinit var rvFollower: RecyclerView
     private lateinit var binding: FragmentDetailUserFollowerBinding
-    val followersList = ArrayList<User>()
+    private lateinit var adapter: ListUserAdapter
+
+    private val followersList = ArrayList<User>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = FragmentDetailUserFollowerBinding.inflate(layoutInflater)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+//        val view = inflater.inflate(R.layout.fragment_detail_user_follower, container, false)
         rvFollower = binding.rvFollowerDtlUser
+        rvFollower.layoutManager = LinearLayoutManager(activity)
+        rvFollower.adapter = ListUserAdapter(followersList)
+        return rvFollower
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        showFollowers(uname!!)
+
+        val layoutManager = LinearLayoutManager(context)
+        rvFollower = binding.rvFollowerDtlUser
+        rvFollower.layoutManager = layoutManager
+        rvFollower.setHasFixedSize(true)
+        adapter = ListUserAdapter(followersList)
+    }
 
 
-        // parsing JSON
-        val client = ApiConfig.getApiService().getUserFollower(uname!!)
-        client.enqueue(object : Callback<FollowerUserResponse> {
+    private fun showFollowers(key: String){
+        val client = ApiConfig.getApiService().getUserFollower(key)
+        client.enqueue(object : Callback<List<FollowerUserResponseItem>> {
             override fun onResponse(
-                call: Call<FollowerUserResponse>,
-                response: Response<FollowerUserResponse>
+                call: Call<List<FollowerUserResponseItem>>,
+                response: Response<List<FollowerUserResponseItem>>
             ){
                 if (response.isSuccessful){
                     val responseBody = response.body()
                     if (responseBody != null){
-                        for (i in 0 until responseBody.followerUserResponse!!.size){
+                        for (i in responseBody.indices){
                             val follower = User(
-                                responseBody.followerUserResponse[i]!!.avatarUrl,
-                                responseBody.followerUserResponse[i]!!.login,
+                                responseBody[i].avatarUrl,
+                                responseBody[i].login,
                                 null,
                                 null,
                                 null,
@@ -57,38 +80,10 @@ class DetailUserFollowerFragment(private val uname: String?) : Fragment() {
                     }
                 }
             }
-
-            override fun onFailure(call: Call<FollowerUserResponse>, t: Throwable) {
-                Log.e("MainActivity", "onFailure: ${t.message}")
-
+            override fun onFailure(call: Call<List<FollowerUserResponseItem>>, t: Throwable) {
+                Log.e("Detail User Fragment", "onFailure: ${t.message}")
             }
         })
-        val follower = User(
-            null,
-            "Sandi Faisal Ferdiansyah",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-        followersList.add(follower)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_user_follower, container, false)
-        showUser(followersList)
-    }
-
-    private fun showUser(data: ArrayList<User>) {
-        val listUserAdapter = ListUserAdapter(data)
-        rvFollower.adapter = listUserAdapter
-
     }
 
 }
