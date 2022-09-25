@@ -32,7 +32,7 @@ class DetailUserFollowerFragment(private val uname: String?) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 //        val view = inflater.inflate(R.layout.fragment_detail_user_follower, container, false)
         rvFollower = binding.rvFollowerDtlUser
@@ -79,6 +79,8 @@ class DetailUserFollowerFragment(private val uname: String?) : Fragment() {
                         }
                     }
                 }
+                val listUserAdapter = ListUserAdapter(followersList)
+                rvFollower.adapter = listUserAdapter
             }
             override fun onFailure(call: Call<List<FollowerUserResponseItem>>, t: Throwable) {
                 Log.e("Detail User Fragment", "onFailure: ${t.message}")

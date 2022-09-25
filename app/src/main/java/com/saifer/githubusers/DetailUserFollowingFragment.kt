@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.saifer.githubusers.databinding.FragmentDetailUserFollowerBinding
 import com.saifer.githubusers.databinding.FragmentDetailUserFollowingBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,9 +32,8 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.fragment_detail_user_follower, container, false)
         rvFollowing = binding.rvFollowingDtlUser
         rvFollowing.layoutManager = LinearLayoutManager(activity)
         rvFollowing.adapter = ListUserAdapter(followingList)
@@ -82,6 +78,8 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
                         }
                     }
                 }
+                val listUserAdapter = ListUserAdapter(followingList)
+                rvFollowing.adapter = listUserAdapter
             }
             override fun onFailure(call: Call<List<FollowingUserResponseItem>>, t: Throwable) {
                 Log.e("Detail User Fragment", "onFailure: ${t.message}")
