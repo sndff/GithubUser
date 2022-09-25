@@ -80,6 +80,11 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
                 }
                 val listUserAdapter = ListUserAdapter(followingList)
                 rvFollowing.adapter = listUserAdapter
+                listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: User) {
+
+                    }
+                })
             }
             override fun onFailure(call: Call<List<FollowingUserResponseItem>>, t: Throwable) {
                 Log.e("Detail User Fragment", "onFailure: ${t.message}")
