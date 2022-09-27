@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.saifer.githubusers.databinding.FragmentDetailUserFollowingBinding
@@ -20,6 +21,7 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
     private lateinit var binding: FragmentDetailUserFollowingBinding
     private lateinit var adapter: ListUserAdapter
 
+    private lateinit var  progBar: ProgressBar
     private val followingList = ArrayList<User>()
 
 
@@ -33,17 +35,19 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+//         Inflate the layout for this fragment
         rvFollowing = binding.rvFollowingDtlUser
+        progBar = binding.progressBar
         rvFollowing.layoutManager = LinearLayoutManager(activity)
         rvFollowing.adapter = ListUserAdapter(followingList)
-        return rvFollowing
+        return binding.root
+//        return binding.progressBar
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showFollowers(uname!!)
+        showFollowing(uname!!)
 
         val layoutManager = LinearLayoutManager(context)
         rvFollowing = binding.rvFollowingDtlUser
@@ -53,7 +57,9 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
     }
 
 
-    private fun showFollowers(key: String){
+    private fun showFollowing(key: String){
+        showLoading(true)
+        followingList.clear()
         val client = ApiConfig.getApiService().getUserFollowing(key)
         client.enqueue(object : Callback<List<FollowingUserResponseItem>> {
             override fun onResponse(
@@ -81,14 +87,20 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
                 val listUserAdapter = ListUserAdapter(followingList)
                 rvFollowing.adapter = listUserAdapter
                 listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: User) {
-
-                    }
+                    override fun onItemClicked(data: User){/*do nothing*/}
                 })
+                showLoading(false)
             }
             override fun onFailure(call: Call<List<FollowingUserResponseItem>>, t: Throwable) {
                 Log.e("Detail User Fragment", "onFailure: ${t.message}")
             }
         })
+    }
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            progBar.visibility = View.VISIBLE
+        } else {
+            progBar.visibility = View.INVISIBLE
+        }
     }
 }

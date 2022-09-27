@@ -34,7 +34,6 @@ class DetailUserActivity : AppCompatActivity() {
                 call: Call<DetailUserResponse>,
                 response: Response<DetailUserResponse>
             ) {
-                showLoading(false)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
@@ -49,13 +48,13 @@ class DetailUserActivity : AppCompatActivity() {
                         binding.textDtlValRepo.text = responseBody.publicRepos.toString()
                         binding.textDtlValLocation.text = responseBody.location
                         binding.textDtlValCompany.text = responseBody.company
+                        showLoading(false)
                     }
                 } else {
                     Log.e("MainActivity", "onFailure: ${response.message()}")
                 }
             }
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                showLoading(false)
                 Log.e("MainActivity", "onFailure: ${t.message}")
             }
         })

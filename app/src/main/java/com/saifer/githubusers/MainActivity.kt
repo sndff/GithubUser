@@ -89,7 +89,6 @@ class MainActivity : AppCompatActivity() {
                 call: Call<FindUserResponse>,
                 response: Response<FindUserResponse>
             ) {
-                showLoading(false)
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
@@ -108,12 +107,12 @@ class MainActivity : AppCompatActivity() {
                         }
                         showUser(searchList)
                     }
+                    showLoading(false)
                 } else {
                     Log.e("MainActivity", "onFailure: ${response.message()}")
                 }
             }
             override fun onFailure(call: Call<FindUserResponse>, t: Throwable) {
-                showLoading(false)
                 Log.e("MainActivity", "onFailure: ${t.message}")
             }
         })
