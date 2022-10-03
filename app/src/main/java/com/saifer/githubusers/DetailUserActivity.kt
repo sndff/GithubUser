@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.saifer.githubusers.api.ApiConfig
 import com.saifer.githubusers.databinding.ActivityDetailUserBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -69,14 +71,6 @@ class DetailUserActivity : AppCompatActivity() {
         }.attach()
         supportActionBar?.elevation = 0f
     }
-    companion object{
-        var EXTRA_USER = ""
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-    }
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
@@ -86,6 +80,14 @@ class DetailUserActivity : AppCompatActivity() {
             val progBar = binding.progressBar
             progBar.visibility = View.GONE
         }
+    }
+    companion object{
+        var EXTRA_USER = ""
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
     }
 }
 

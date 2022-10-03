@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.saifer.githubusers">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUsers"
         tools:targetApi="31">
+        <activity
+            android:name=".theme.ChangeNameActivity"
+            android:exported="false" />
         <activity
             android:name=".DetailUserActivity"
             android:exported="false" />

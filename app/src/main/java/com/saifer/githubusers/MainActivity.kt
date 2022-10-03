@@ -8,16 +8,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.saifer.githubusers.api.ApiConfig
 import com.saifer.githubusers.databinding.ActivityMainBinding
+import com.saifer.githubusers.theme.ChangeNameActivity
+import com.saifer.githubusers.theme.ThemeViewModel
+import com.saifer.githubusers.theme.SettingPreferences
+import com.saifer.githubusers.theme.ViewModelFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var rvUser: RecyclerView
@@ -33,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         rvUser = binding.rvUser
         rvUser.setHasFixedSize(true)
+        setTheme()
 
     }
 
@@ -55,6 +68,18 @@ class MainActivity : AppCompatActivity() {
             }
         })
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.change_theme -> {
+                val i = Intent(this@MainActivity, ChangeNameActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            else -> return true
+        }
+
     }
 
     private fun showUser(data: ArrayList<User>) {
@@ -127,4 +152,20 @@ class MainActivity : AppCompatActivity() {
             progBar.visibility = View.GONE
         }
     }
+
+    fun setTheme(){
+        val pref = SettingPreferences.getInstance(dataStore)
+        val themeViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            ThemeViewModel::class.java
+        )
+        themeViewModel.getThemeSettings().observe(this
+        ) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+    }
+
 }

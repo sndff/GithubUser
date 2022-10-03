@@ -123,5 +123,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="user_avatar_dtl">User Avatar</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="favorite_this_user">Add to Favorite</string>
 </resources>
 

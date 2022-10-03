@@ -1,5 +1,6 @@
-package com.saifer.githubusers
+package com.saifer.githubusers.api
 
+import com.saifer.githubusers.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

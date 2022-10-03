@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.saifer.githubusers.api.ApiConfig
 import com.saifer.githubusers.databinding.FragmentDetailUserFollowingBinding
 import retrofit2.Call
 import retrofit2.Callback
