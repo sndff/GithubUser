@@ -6,7 +6,7 @@
         android:state_checked="false" />
 
     <item
-        android:drawable="@drawable/ic_launcher_foreground"
+        android:drawable="@drawable/ic_favorite"
         android:state_checked="true" />
 
 </selector>

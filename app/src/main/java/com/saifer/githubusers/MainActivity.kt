@@ -145,15 +145,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            val progBar = binding.progressBar
-            progBar.visibility = View.VISIBLE
+            val progressBar = binding.progressBar
+            progressBar.visibility = View.VISIBLE
         } else {
-            val progBar = binding.progressBar
-            progBar.visibility = View.GONE
+            val progressBar = binding.progressBar
+            progressBar.visibility = View.GONE
         }
     }
 
-    fun setTheme(){
+    private fun setTheme(){
         val pref = SettingPreferences.getInstance(dataStore)
         val themeViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
             ThemeViewModel::class.java

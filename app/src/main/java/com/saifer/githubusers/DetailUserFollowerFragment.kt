@@ -21,7 +21,7 @@ class DetailUserFollowerFragment(private val uname: String?) : Fragment() {
     private lateinit var rvFollower: RecyclerView
     private lateinit var binding: FragmentDetailUserFollowerBinding
     private lateinit var adapter: ListUserAdapter
-    private lateinit var  progBar: ProgressBar
+    private lateinit var  progressBar: ProgressBar
 
     private val followersList = ArrayList<User>()
 
@@ -38,7 +38,7 @@ class DetailUserFollowerFragment(private val uname: String?) : Fragment() {
     ): View {
 //         Inflate the layout for this fragment
         rvFollower = binding.rvFollowerDtlUser
-        progBar = binding.progressBar
+        progressBar = binding.progressBar
         rvFollower.layoutManager = LinearLayoutManager(activity)
         rvFollower.adapter = ListUserAdapter(followersList)
         return binding.root
@@ -98,9 +98,9 @@ class DetailUserFollowerFragment(private val uname: String?) : Fragment() {
     }
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            progBar.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progBar.visibility = View.INVISIBLE
+            progressBar.visibility = View.INVISIBLE
         }
     }
 }

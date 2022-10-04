@@ -22,7 +22,7 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
     private lateinit var binding: FragmentDetailUserFollowingBinding
     private lateinit var adapter: ListUserAdapter
 
-    private lateinit var  progBar: ProgressBar
+    private lateinit var  progressBar: ProgressBar
     private val followingList = ArrayList<User>()
 
 
@@ -38,7 +38,7 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
     ): View {
 //         Inflate the layout for this fragment
         rvFollowing = binding.rvFollowingDtlUser
-        progBar = binding.progressBar
+        progressBar = binding.progressBar
         rvFollowing.layoutManager = LinearLayoutManager(activity)
         rvFollowing.adapter = ListUserAdapter(followingList)
         return binding.root
@@ -99,9 +99,9 @@ class DetailUserFollowingFragment(private val uname: String?) : Fragment() {
     }
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            progBar.visibility = View.VISIBLE
+            progressBar.visibility = View.VISIBLE
         } else {
-            progBar.visibility = View.INVISIBLE
+            progressBar.visibility = View.INVISIBLE
         }
     }
 }
