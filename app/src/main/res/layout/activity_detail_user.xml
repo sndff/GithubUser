@@ -1,249 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:context=".DetailUserActivity">
 
-    <TableLayout
+    <ImageView
+        android:id="@+id/img_dtl_avatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/user_avatar_dtl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_dtl_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="User Full Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_dtl_avatar" />
+
+    <TextView
+        android:id="@+id/text_dtl_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:text="Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_name" />
+
+    <TextView
+        android:id="@+id/text_dtl_follower"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:gravity="start"
+        app:layout_constraintBottom_toBottomOf="@+id/text_dtl_val_follower"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_dtl_val_follower"
+        tools:text="Follower" />
+
+    <TextView
+        android:id="@+id/text_dtl_val_follower"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:stretchColumns="1">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="235dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:gravity="end"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_dtl_follower"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_username"
+        tools:text="Followers Value si lorem ipsum dolor" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            tools:context=".DetailUserActivity">
+    <TextView
+        android:id="@+id/text_dtl_following"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:gravity="start"
+        android:text="@string/tvFollowing"
+        app:layout_constraintBottom_toBottomOf="@+id/text_dtl_val_following"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_dtl_val_following" />
 
-            <TableRow
-                android:id="@+id/tableRow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+    <TextView
+        android:id="@+id/text_dtl_val_following"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginStart="235dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/text_dtl_follower"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_follower"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="following by this people lorem ipsum"/>
 
-                <ImageView
-                    android:id="@+id/img_dtl_avatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:contentDescription="@string/user_avatar_dtl" />
-            </TableRow>
+    <TextView
+        android:id="@+id/text_dtl_repo"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:text="@string/tvRepositories"
+        app:layout_constraintTop_toTopOf="@id/text_dtl_val_repo"
+        app:layout_constraintBottom_toBottomOf="@id/text_dtl_val_repo"
+        app:layout_constraintStart_toStartOf="parent" />
 
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow">
+    <TextView
+        android:id="@+id/text_dtl_val_repo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginStart="235dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_following"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Lorem ipsum dolor ini value dari repository"/>
 
-                <TextView
-                    android:id="@+id/text_dtl_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </TableRow>
+    <TextView
+        android:id="@+id/text_dtl_location"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:text="@string/tvLocation"
+        app:layout_constraintTop_toTopOf="@id/text_dtl_val_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/text_dtl_val_location"/>
 
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow2">
+    <TextView
+        android:id="@+id/text_dtl_val_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginStart="235dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        tools:text="Lorem ipsum dolor ini value dari location"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_repo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/text_dtl_location" />
 
-                <TextView
-                    android:id="@+id/text_dtl_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </TableRow>
+    <TextView
+        android:id="@+id/text_dtl_company"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:text="@string/tvCompany"
+        app:layout_constraintTop_toTopOf="@id/text_dtl_val_company"
+        app:layout_constraintBottom_toBottomOf="@id/text_dtl_val_company"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow3">
+    <TextView
+        android:id="@+id/text_dtl_val_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginStart="235dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        tools:text="Lorem ipsum dolor ini value dari Company"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_dtl_company"/>
 
-                <TextView
-                    android:id="@+id/text_dtl_follower"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="@string/tvFollower" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="SpeakableTextPresentCheck"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_company"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-                <TextView
-                    android:id="@+id/text_dtl_val_follower"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textStyle="bold" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs" >
 
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow4">
-
-                <TextView
-                    android:id="@+id/text_dtl_following"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="@string/tvFollowing" />
-
-                <TextView
-                    android:id="@+id/text_dtl_val_following"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow5">
-
-                <TextView
-                    android:id="@+id/text_dtl_repo"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="@string/tvRepositories" />
-
-                <TextView
-                    android:id="@+id/text_dtl_val_repo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow6">
-
-                <TextView
-                    android:id="@+id/text_dtl_location"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="@string/tvLocation" />
-
-                <TextView
-                    android:id="@+id/text_dtl_val_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tableRow7">
-
-                <TextView
-                    android:id="@+id/text_dtl_company"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:text="@string/tvCompany" />
-
-                <TextView
-                    android:id="@+id/text_dtl_val_company"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <ToggleButton
-                android:id="@+id/btn_fav"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/favorite_toggle"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:foregroundGravity="bottom"
-                android:textOff=""
-                android:textOn=""
-                app:layout_anchorGravity="bottom|end"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tableRow8"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
+    </androidx.viewpager2.widget.ViewPager2>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
-        android:visibility="visible"
-        android:indeterminate="true"
-        android:layout_gravity="center"
-        tools:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="visible"
+        tools:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tableRow"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-</FrameLayout>
+    <ToggleButton
+        android:id="@+id/btn_fav"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/favorite_toggle"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:foregroundGravity="bottom"
+        android:textOff=""
+        android:textOn=""
+        app:layout_anchorGravity="bottom|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
