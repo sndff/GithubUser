@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.saifer.githubusers.api.ApiConfig
 import com.saifer.githubusers.databinding.ActivityDetailUserBinding
+import com.saifer.githubusers.favorite.FavoriteViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +20,7 @@ import retrofit2.Response
 class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
+    private lateinit var FavoriteViewModel: FavoriteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,17 +72,22 @@ class DetailUserActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+
+        val btnFav = binding.btnFav
+//        isChecked(user)
+
     }
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            val progBar = binding.progressBar
-            progBar.visibility = View.VISIBLE
+            val progressBar = binding.progressBar
+            progressBar.visibility = View.VISIBLE
         } else {
-            val progBar = binding.progressBar
-            progBar.visibility = View.GONE
+            val progressBar = binding.progressBar
+            progressBar.visibility = View.GONE
         }
     }
+
     companion object{
         var EXTRA_USER = ""
         @StringRes
