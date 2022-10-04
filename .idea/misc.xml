@@ -7,11 +7,13 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1025" />
         <entry key="app/src/main/res/drawable/favorite_toggle.xml" value="0.1045" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1025" />
+        <entry key="app/src/main/res/drawable/ic_favorite.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_favorite_yet.xml" value="0.1055" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1025" />
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.1025" />
         <entry key="app/src/main/res/layout/activity_change_name.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.189873417721519" />
+        <entry key="app/src/main/res/layout/activity_favorite_add.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_detail_user_follower.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_detail_user_following.xml" value="0.27488151658767773" />
