@@ -1,4 +1,4 @@
-package com.saifer.githubusers
+package com.saifer.githubusers.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.saifer.githubusers.R
+import com.saifer.githubusers.User
 
 class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
 
@@ -26,7 +28,8 @@ class ListUserAdapter(private val listUser: ArrayList<User>) : RecyclerView.Adap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_user, parent, false)
         return ListViewHolder(view)
     }
 

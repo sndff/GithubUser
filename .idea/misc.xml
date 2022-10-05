@@ -12,9 +12,10 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1025" />
         <entry key="app/src/main/res/drawable/ic_setting.xml" value="0.1025" />
         <entry key="app/src/main/res/layout/activity_change_name.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.189873417721519" />
+        <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_favorite_add.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_modify.xml" value="0.18206521739130435" />
         <entry key="app/src/main/res/layout/fragment_detail_user_follower.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_detail_user_following.xml" value="0.27488151658767773" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.33" />
