@@ -1,4 +1,4 @@
-package com.saifer.githubusers
+package com.saifer.githubusers.detail
 
 import com.google.gson.annotations.SerializedName
 

@@ -14,7 +14,7 @@ import com.saifer.githubusers.R
 
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-class ChangeNameActivity : AppCompatActivity() {
+class ChangeThemeActivity : AppCompatActivity() {
 
 //    private lateinit var binding = ActivityChangeNameBinding
 
@@ -25,7 +25,7 @@ class ChangeNameActivity : AppCompatActivity() {
         val switchTheme = findViewById<SwitchMaterial>(R.id.ganti_tema)
 
         val pref = SettingPreferences.getInstance(dataStore)
-        val themeViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref)).get(
             ThemeViewModel::class.java
         )
         themeViewModel.getThemeSettings().observe(this,

@@ -1,37 +1,24 @@
-package com.saifer.githubusers
+package com.saifer.githubusers.detail
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.saifer.githubusers.User
+import com.saifer.githubusers.adapter.DetailUserPagerAdapter
 import com.saifer.githubusers.api.ApiConfig
 import com.saifer.githubusers.databinding.ActivityDetailUserBinding
-import com.saifer.githubusers.favorite.FavoriteViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailUserActivity : AppCompatActivity() {
+class DetailUserViewModel : ViewModel() {
 
-    private lateinit var binding: ActivityDetailUserBinding
-    private lateinit var FavoriteViewModel: FavoriteViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_user)
-        title = "Detail User"
-
-        binding = ActivityDetailUserBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
-
+    fun setDetailUser(binding: ActivityDetailUserBinding, user: User){
         val client = ApiConfig.getApiService().getDetailUser(user.username!!)
         client.enqueue(object : Callback<DetailUserResponse> {
             override fun onResponse(
@@ -52,33 +39,30 @@ class DetailUserActivity : AppCompatActivity() {
                         binding.textDtlValRepo.text = responseBody.publicRepos.toString()
                         binding.textDtlValLocation.text = responseBody.location
                         binding.textDtlValCompany.text = responseBody.company
-                        showLoading(false)
+                        showLoading(binding, false)
                     }
                 } else {
-                    Log.e("MainActivity", "onFailure: ${response.message()}")
+                    Log.e("DetailUserViewModel", "onFailure: ${response.message()}")
                 }
             }
             override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                Log.e("MainActivity", "onFailure: ${t.message}")
+                Log.e("DetailUserViewModel", "onFailure: ${t.message}")
             }
         })
+    }
 
-        // Tab Layout
-        val pageAdapter = DetailUserPagerAdapter(this, user.username)
+    fun setTabLayout(activity: AppCompatActivity, binding: ActivityDetailUserBinding, user: User){
+        val pageAdapter = DetailUserPagerAdapter(activity, user.username)
         val viewPager: ViewPager2 = binding.viewPager
         viewPager.adapter = pageAdapter
         val tabs: TabLayout = binding.tabs
         TabLayoutMediator(tabs, viewPager) { tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
+            tab.text = activity.resources.getString(DetailUserActivity.TAB_TITLES[position])
         }.attach()
-        supportActionBar?.elevation = 0f
-
-        val btnFav = binding.btnFav
-//        isChecked(user)
-
+        activity.supportActionBar?.elevation = 0f
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    private fun showLoading(binding: ActivityDetailUserBinding, isLoading: Boolean) {
         if (isLoading) {
             val progressBar = binding.progressBar
             progressBar.visibility = View.VISIBLE
@@ -87,14 +71,4 @@ class DetailUserActivity : AppCompatActivity() {
             progressBar.visibility = View.GONE
         }
     }
-
-    companion object{
-        var EXTRA_USER = ""
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-    }
 }
-

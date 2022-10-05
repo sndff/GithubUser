@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    tools:context=".DetailUserActivity">
+    tools:context=".detail.DetailUserActivity">
 
     <ImageView
         android:id="@+id/img_dtl_avatar"
@@ -59,8 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="235dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="5dp"
         android:gravity="end"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,15 +81,15 @@
         android:id="@+id/text_dtl_val_following"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
         android:layout_marginStart="235dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="5dp"
+        android:gravity="end"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/text_dtl_follower"
         app:layout_constraintTop_toBottomOf="@id/text_dtl_val_follower"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="following by this people lorem ipsum"/>
+        tools:text="following by this people lorem ipsum" />
 
     <TextView
         android:id="@+id/text_dtl_repo"
@@ -109,14 +107,15 @@
         android:id="@+id/text_dtl_val_repo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
         android:layout_marginStart="235dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="5dp"
+        android:gravity="end"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_following"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Lorem ipsum dolor ini value dari repository"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_following"
+        tools:text="Lorem ipsum dolor ini value dari repository" />
 
     <TextView
         android:id="@+id/text_dtl_location"
@@ -134,15 +133,15 @@
         android:id="@+id/text_dtl_val_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
         android:layout_marginStart="235dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="5dp"
+        android:gravity="end"
         android:textStyle="bold"
-        tools:text="Lorem ipsum dolor ini value dari location"
-        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_repo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/text_dtl_location" />
+        app:layout_constraintStart_toStartOf="@id/text_dtl_location"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_repo"
+        tools:text="Lorem ipsum dolor ini value dari location" />
 
     <TextView
         android:id="@+id/text_dtl_company"
@@ -160,15 +159,15 @@
         android:id="@+id/text_dtl_val_company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
         android:layout_marginStart="235dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="5dp"
+        android:gravity="end"
         android:textStyle="bold"
-        tools:text="Lorem ipsum dolor ini value dari Company"
-        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/text_dtl_company"/>
+        app:layout_constraintStart_toEndOf="@id/text_dtl_company"
+        app:layout_constraintTop_toBottomOf="@id/text_dtl_val_location"
+        tools:text="Lorem ipsum dolor ini value dari Company" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -207,8 +206,8 @@
         android:id="@+id/btn_fav"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/favorite_toggle"
         android:focusable="false"
         android:focusableInTouchMode="false"
@@ -216,8 +215,8 @@
         android:textOff=""
         android:textOn=""
         app:layout_anchorGravity="bottom|end"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
