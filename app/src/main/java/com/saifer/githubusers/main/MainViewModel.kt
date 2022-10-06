@@ -38,10 +38,10 @@ class MainViewModel: ViewModel() {
         })
     }
 
-    fun showSelectedUser(activity: AppCompatActivity, user: User) : Intent {
+    fun showSelectedUser(activity: AppCompatActivity, user: User) {
         val intentDetailUserActivity = Intent(activity, DetailUserActivity::class.java)
         intentDetailUserActivity.putExtra(DetailUserActivity.EXTRA_USER, user)
-        return intentDetailUserActivity
+        activity.startActivity(intentDetailUserActivity)
     }
 
     fun findUser(activity: AppCompatActivity, binding: ActivityMainBinding, rv: RecyclerView, key: String){
