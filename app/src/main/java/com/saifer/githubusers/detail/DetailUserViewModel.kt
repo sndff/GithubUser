@@ -1,5 +1,6 @@
 package com.saifer.githubusers.detail
 
+import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +13,15 @@ import com.saifer.githubusers.User
 import com.saifer.githubusers.adapter.DetailUserPagerAdapter
 import com.saifer.githubusers.api.ApiConfig
 import com.saifer.githubusers.databinding.ActivityDetailUserBinding
+import com.saifer.githubusers.favorite.database.Favorite
+import com.saifer.githubusers.favorite.repository.FavoriteRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailUserViewModel : ViewModel() {
+class DetailUserViewModel(application: Application) : ViewModel() {
+
+    private val mFavoriteRepository: FavoriteRepository = FavoriteRepository(application)
 
     fun setDetailUser(binding: ActivityDetailUserBinding, user: User){
         val client = ApiConfig.getApiService().getDetailUser(user.username!!)
@@ -71,4 +76,25 @@ class DetailUserViewModel : ViewModel() {
             progressBar.visibility = View.GONE
         }
     }
+
+    fun setBtnFavorite(favorite: Favorite){
+        checkUser(favorite.id)
+    }
+
+    fun addToFavorite(id: Int, username: String, avatar: String){
+        var user = Favorite(
+            id,
+            username,
+            avatar
+        )
+        mFavoriteRepository.insert(user)
+    }
+
+    fun checkUser(id: Int) = mFavoriteRepository.checkUser(id)
+
+    fun deleteFromFavorite(id: Int){
+        mFavoriteRepository.delete(id)
+    }
+
+
 }

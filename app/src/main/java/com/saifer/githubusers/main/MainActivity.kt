@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.saifer.githubusers.R
 import com.saifer.githubusers.databinding.ActivityMainBinding
+import com.saifer.githubusers.favorite.FavoriteActivity
 import com.saifer.githubusers.theme.ChangeThemeActivity
 import com.saifer.githubusers.theme.SettingPreferences
 import com.saifer.githubusers.theme.ThemeViewModel
@@ -66,8 +67,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.change_theme -> {
+            R.id.btn_change_theme -> {
                 val i = Intent(this@MainActivity, ChangeThemeActivity::class.java)
+                startActivity(i)
+                return true
+            }
+            R.id.btn_favorites -> {
+                val i = Intent(this@MainActivity, FavoriteActivity::class.java)
                 startActivity(i)
                 return true
             }
@@ -77,77 +83,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-//    private fun showUser(data: ArrayList<User>) {
-//        if(applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-//            rvUser.layoutManager = GridLayoutManager(this, 2)
-//        } else {
-//            rvUser.layoutManager = LinearLayoutManager(this)
-//        }
-//        val listUserAdapter = ListUserAdapter(data)
-//        rvUser.adapter = listUserAdapter
-//
-//        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
-//            override fun onItemClicked(data: User) {
-//                showSelectedUser(data)
-//            }
-//        })
-//    }
-//
-//
-//    private fun showSelectedUser(user: User) {
-//        val intentDetailUserActivity = Intent(this@MainActivity, DetailUserActivity::class.java)
-//        intentDetailUserActivity.putExtra(DetailUserActivity.EXTRA_USER, user)
-//        startActivity(intentDetailUserActivity)
-//    }
-//
-//    private fun findUser(key: String){
-//        val searchList = ArrayList<User>()
-//        val client = ApiConfig.getApiService().getUser(key)
-//        showLoading(true)
-//        client.enqueue(object : Callback<FindUserResponse> {
-//            override fun onResponse(
-//                call: Call<FindUserResponse>,
-//                response: Response<FindUserResponse>
-//            ) {
-//                if (response.isSuccessful) {
-//                    val responseBody = response.body()
-//                    if (responseBody != null) {
-//                        for (i in 0 until responseBody.items!!.size){
-//                            val user = User(
-//                                responseBody.items[i]!!.avatarUrl,
-//                                responseBody.items[i]!!.login,
-//                                null,
-//                                null,
-//                                null,
-//                                null,
-//                                null,
-//                                null
-//                            )
-//                            searchList.add(user)
-//                        }
-//                        showUser(searchList)
-//                    }
-//                    showLoading(false)
-//                } else {
-//                    Log.e("MainActivity", "onFailure: ${response.message()}")
-//                }
-//            }
-//            override fun onFailure(call: Call<FindUserResponse>, t: Throwable) {
-//                Log.e("MainActivity", "onFailure: ${t.message}")
-//            }
-//        })
-//    }
-//
-//    private fun showLoading(isLoading: Boolean) {
-//        if (isLoading) {
-//            val progressBar = binding.progressBar
-//            progressBar.visibility = View.VISIBLE
-//        } else {
-//            val progressBar = binding.progressBar
-//            progressBar.visibility = View.GONE
-//        }
-//    }
 
     private fun setTheme(){
         val pref = SettingPreferences.getInstance(dataStore)

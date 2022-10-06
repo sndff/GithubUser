@@ -15,10 +15,12 @@ data class FindUserResponse(
 )
 
 data class ItemsItem(
-
 	@field:SerializedName("avatar_url")
 	val avatarUrl: String? = null,
 
 	@field:SerializedName("login")
-	val login: String? = null
+	val login: String? = null,
+
+	@field:SerializedName("id")
+	val id: Int
 )

@@ -45,12 +45,11 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
         android:gravity="start"
-        app:layout_constraintBottom_toBottomOf="@+id/text_dtl_val_follower"
+        android:text="@string/tvFollower"
+        app:layout_constraintBottom_toTopOf="@+id/text_dtl_val_following"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_dtl_val_follower"
-        tools:text="Follower" />
+        app:layout_constraintTop_toTopOf="@+id/text_dtl_val_follower" />
 
     <TextView
         android:id="@+id/text_dtl_val_follower"
@@ -64,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/text_dtl_follower"
         app:layout_constraintTop_toBottomOf="@id/text_dtl_username"
-        tools:text="Followers Value si lorem ipsum dolor" />
+        tools:text="Followers" />
 
     <TextView
         android:id="@+id/text_dtl_following"
@@ -89,19 +88,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/text_dtl_follower"
         app:layout_constraintTop_toBottomOf="@id/text_dtl_val_follower"
-        tools:text="following by this people lorem ipsum" />
+        tools:text="following" />
 
     <TextView
         android:id="@+id/text_dtl_repo"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:gravity="start"
         android:text="@string/tvRepositories"
-        app:layout_constraintTop_toTopOf="@id/text_dtl_val_repo"
         app:layout_constraintBottom_toBottomOf="@id/text_dtl_val_repo"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_dtl_val_repo" />
 
     <TextView
         android:id="@+id/text_dtl_val_repo"
@@ -115,19 +113,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_dtl_val_following"
-        tools:text="Lorem ipsum dolor ini value dari repository" />
+        tools:text="repo" />
 
     <TextView
         android:id="@+id/text_dtl_location"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:gravity="start"
         android:text="@string/tvLocation"
-        app:layout_constraintTop_toTopOf="@id/text_dtl_val_location"
+        app:layout_constraintBottom_toBottomOf="@id/text_dtl_val_location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/text_dtl_val_location"/>
+        app:layout_constraintTop_toTopOf="@id/text_dtl_val_location" />
 
     <TextView
         android:id="@+id/text_dtl_val_location"
@@ -141,19 +138,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/text_dtl_location"
         app:layout_constraintTop_toBottomOf="@id/text_dtl_val_repo"
-        tools:text="Lorem ipsum dolor ini value dari location" />
+        tools:text="Locatopn" />
 
     <TextView
         android:id="@+id/text_dtl_company"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="30dp"
+        android:gravity="start"
         android:text="@string/tvCompany"
-        app:layout_constraintTop_toTopOf="@id/text_dtl_val_company"
         app:layout_constraintBottom_toBottomOf="@id/text_dtl_val_company"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_dtl_val_company" />
 
     <TextView
         android:id="@+id/text_dtl_val_company"
@@ -167,7 +163,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/text_dtl_company"
         app:layout_constraintTop_toBottomOf="@id/text_dtl_val_location"
-        tools:text="Lorem ipsum dolor ini value dari Company" />
+        tools:text="dari Company" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -206,8 +202,8 @@
         android:id="@+id/btn_fav"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/favorite_toggle"
         android:focusable="false"
         android:focusableInTouchMode="false"
@@ -215,8 +211,8 @@
         android:textOff=""
         android:textOn=""
         app:layout_anchorGravity="bottom|end"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

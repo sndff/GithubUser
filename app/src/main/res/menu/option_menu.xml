@@ -9,9 +9,15 @@
         app:showAsAction="collapseActionView|always" />
 
     <item
-        android:id="@+id/change_theme"
+        android:id="@+id/btn_change_theme"
         android:icon="@drawable/ic_setting"
         android:title="@string/change_theme"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/btn_favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorites"
         app:showAsAction="always" />
 
 </menu>

@@ -1,6 +1,5 @@
 package com.saifer.githubusers.main
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.util.Log
@@ -60,6 +59,7 @@ class MainViewModel: ViewModel() {
                             val user = User(
                                 responseBody.items[i]!!.avatarUrl,
                                 responseBody.items[i]!!.login,
+                                responseBody.items[i]!!.id,
                                 null,
                                 null,
                                 null,
