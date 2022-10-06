@@ -77,12 +77,8 @@ class DetailUserViewModel(application: Application) : ViewModel() {
         }
     }
 
-    fun setBtnFavorite(favorite: Favorite){
-        checkUser(favorite.id)
-    }
-
     fun addToFavorite(id: Int, username: String, avatar: String){
-        var user = Favorite(
+        val user = Favorite(
             id,
             username,
             avatar

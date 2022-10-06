@@ -16,8 +16,6 @@ import com.saifer.githubusers.R
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class ChangeThemeActivity : AppCompatActivity() {
 
-//    private lateinit var binding = ActivityChangeNameBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_theme)
@@ -25,19 +23,17 @@ class ChangeThemeActivity : AppCompatActivity() {
         val switchTheme = findViewById<SwitchMaterial>(R.id.ganti_tema)
 
         val pref = SettingPreferences.getInstance(dataStore)
-        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref)).get(
-            ThemeViewModel::class.java
-        )
-        themeViewModel.getThemeSettings().observe(this,
-            { isDarkModeActive: Boolean ->
-                if (isDarkModeActive) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    switchTheme.isChecked = true
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    switchTheme.isChecked = false
-                }
-            })
+        val themeViewModel = ViewModelProvider(this, ThemeViewModelFactory(pref))[ThemeViewModel::class.java]
+        themeViewModel.getThemeSettings().observe(this
+        ) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                switchTheme.isChecked = true
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                switchTheme.isChecked = false
+            }
+        }
 
         switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             themeViewModel.saveThemeSetting(isChecked)

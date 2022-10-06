@@ -42,7 +42,7 @@ class DetailUserActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val count = viewModel.checkUser(user.id)
             withContext(Dispatchers.Main){
-                if (count != null) if(count > 0){
+                if(count > 0){
                     binding.btnFav.isChecked = true
                     _checked = true
                 }
@@ -57,10 +57,10 @@ class DetailUserActivity : AppCompatActivity() {
             _checked = !_checked
             if (_checked){
                 viewModel.addToFavorite(user.id, user.username!!, user.avatar!!)
-                Toast.makeText(this@DetailUserActivity, "Followed ${user.username}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@DetailUserActivity, "Added ${user.username} to Favorites", Toast.LENGTH_SHORT).show()
             } else {
                 viewModel.deleteFromFavorite(user.id)
-                Toast.makeText(this@DetailUserActivity, "Unfollowed ${user.username}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@DetailUserActivity, "Remove ${user.username} from Favorites", Toast.LENGTH_SHORT).show()
             }
             binding.btnFav.isChecked = _checked
         }
@@ -88,7 +88,6 @@ class DetailUserActivity : AppCompatActivity() {
                 return true
             }
         }
-
     }
 
     companion object{
